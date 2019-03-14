@@ -41,7 +41,38 @@ $(document).ready(function () {
     index = index < (testimonials.length - 1) ? index + 1 : 0;
     setTestimonial(testimonials[index]);
   });
+
+
+  $('#contact-form').on("submit", function (e) {
+    e.preventDefault();
+    const email = $('#email-input').val();
+    if (!validateEmail(email)) {
+      $('#contact-form .submit-result').text('Email address is invalid!');
+      $('#contact-form .submit-result').addClass('error');
+      return;
+    }
+    $('#contact-form .submit-result').removeClass('error');
+    $('#contact-form .submit-result').text('');
+    $('#contact-form .submit-button').attr('disabled', true);
+
+    $('#contact-form .loading').show();
+    $('#contact-form .text').text('Sending...');
+    setTimeout(() => {
+      $('#contact-form .loading').hide();
+      $('#contact-form .text').text('Send Message');
+      $('#contact-form').trigger("reset");
+
+      $('#contact-form .submit-result').addClass('success');
+      $('#contact-form .submit-button').attr('disabled', false);
+      $('#contact-form .submit-result').text('Thank you for getting in touch with us! We will contact you shortly!');
+    }, 5000);
+  });
 });
+
+function validateEmail(email) {
+  var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(String(email).toLowerCase());
+}
 
 function idIsHovered(id) {
   return $("#" + id + ":hover").length > 0;

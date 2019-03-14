@@ -1,13 +1,12 @@
 $icon-font-path: '../fonts/';
 
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
+@import "variable";
 @import "circular-std";
 @import "animate.css";
+@import "partner";
+@import "contact";
 
-$primary: #061F35;
-$secondary: #FC9C00;
-$primary-light: rgba($primary, .8);
-$features-background: #0A062E;
 
 header {
   .logo-text {
@@ -72,17 +71,6 @@ body {
         color: $primary-light;
         font-size: 20px;
         margin: 32px 0;
-      }
-
-      .download {
-        img {
-          width: 188px;
-          height: 56px;
-        }
-
-        img:nth-child(1) {
-          margin-right: 40px;
-        }
       }
     }
 
@@ -305,6 +293,17 @@ body {
 
 .v-container {
   margin: 0 150px;
+}
+
+.download {
+  img {
+    width: 188px;
+    height: 56px;
+  }
+
+  img:nth-child(1) {
+    margin-right: 40px;
+  }
 }
 
 * {

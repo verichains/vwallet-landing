@@ -1,0 +1,52 @@
+@import "variable";
+
+#contact {
+  margin: 123px 0;
+
+  .title {
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: 500;
+    margin-bottom: 44px;
+  }
+
+  .submit-button {
+    background-color: $primary;
+    padding: 16px 46px;
+    margin-top: 44px;
+
+    span {
+      color: white;
+      font-size: 17px;
+      line-height: normal;;
+    }
+  }
+
+  .input {
+    &.input-text {
+      height: 60px;
+    }
+
+    &.input-text-area {
+      padding-top: 18px;
+    }
+
+    &::placeholder {
+      font-size: 17px;
+      line-height: normal;
+      color: #989CA2;
+    }
+  }
+
+  .image {
+    margin-bottom: 40px;
+  }
+
+  .error {
+    color: red;
+  }
+
+  .success {
+    color: green;
+  }
+}
