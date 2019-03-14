@@ -22,7 +22,7 @@ $(document).ready(function () {
   let index = 0;
   setTestimonial(testimonials[index]);
 
-  setInterval(() => {
+  setInterval(function () {
     if (!idIsHovered('testimonial')) {
       index = index < (testimonials.length - 1) ? index + 1 : 0;
       setTestimonial(testimonials[index]);
@@ -46,25 +46,26 @@ $(document).ready(function () {
   $('#contact-form').on("submit", function (e) {
     e.preventDefault();
     const email = $('#email-input').val();
+    const result = $('#contact-form .submit-result');
     if (!validateEmail(email)) {
-      $('#contact-form .submit-result').text('Email address is invalid!');
-      $('#contact-form .submit-result').addClass('error');
+      result.text('Email address is invalid!');
+      result.addClass('error');
       return;
     }
-    $('#contact-form .submit-result').removeClass('error');
-    $('#contact-form .submit-result').text('');
+    result.removeClass('error');
+    result.text('');
     $('#contact-form .submit-button').attr('disabled', true);
 
     $('#contact-form .loading').show();
     $('#contact-form .text').text('Sending...');
-    setTimeout(() => {
+    setTimeout(function () {
       $('#contact-form .loading').hide();
       $('#contact-form .text').text('Send Message');
       $('#contact-form').trigger("reset");
 
-      $('#contact-form .submit-result').addClass('success');
+      result.addClass('success');
       $('#contact-form .submit-button').attr('disabled', false);
-      $('#contact-form .submit-result').text('Thank you for getting in touch with us! We will contact you shortly!');
+      result.text('Thank you for getting in touch with us! We will contact you shortly!');
     }, 5000);
   });
 });
@@ -81,21 +82,13 @@ function idIsHovered(id) {
 function setTestimonial(testimonial) {
   const customer = $('#testimonial .customer');
   customer.addClass('animated fadeOut');
-  setTimeout(() => {
+  setTimeout(function () {
     customer.removeClass('fadeOut fadeIn');
     customer.find('.message').text('“' + testimonial.message + '”');
     customer.find('.user .name').text(testimonial.name);
     customer.find('.user .work').text(testimonial.work);
     customer.addClass('animated fadeIn');
   }, 500);
-}
-
-function prevTestimonial() {
-
-}
-
-function nextTestimonial() {
-
 }
 
 function onNavClick(number) {

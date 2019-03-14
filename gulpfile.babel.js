@@ -1,12 +1,13 @@
-import gulp from 'gulp';
-import gulpLoadPlugins from 'gulp-load-plugins';
-import browserSync from 'browser-sync';
-import del from 'del';
-import minifyCss from 'gulp-minify-css';
-import minifyJs from 'gulp-uglify';
-import imagemin from 'gulp-imagemin';
-import pngquant from 'imagemin-pngquant';
-import sass from 'gulp-sass';
+const gulp = require( 'gulp');
+const gulpLoadPlugins = require( 'gulp-load-plugins');
+const browserSync = require( 'browser-sync');
+const del = require( 'del');
+const minifyCss = require( 'gulp-minify-css');
+const minifyJs = require( 'gulp-uglify');
+const imagemin = require( 'gulp-imagemin');
+const pngquant = require( 'imagemin-pngquant');
+const sass = require( 'gulp-sass');
+const babel = require('gulp-babel');
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -14,7 +15,7 @@ const reload = browserSync.reload;
 gulp.task('minify-css', () => {
   return gulp.src('.tmp/styles/*.css')
     .pipe(minifyCss({compatibility: 'ie8'}))
-    .pipe(gulp.dest('dist/styles_min'));
+    .pipe(gulp.dest('dist/styles'));
 });
 
 gulp.task('style', function () {
@@ -33,8 +34,11 @@ gulp.task('styles-dist', function () {
 
 gulp.task('minify-js', () => {
   return gulp.src('app/scripts/*.js')
-    .pipe(minifyJs())
-    .pipe(gulp.dest('dist/scripts_min'));
+    .pipe(babel({
+      presets: ['@babel/env']
+    }))
+    .pipe(minifyJs().on('error', console.log))
+    .pipe(gulp.dest('dist/scripts'));
 });
 
 gulp.task('scripts', () => {
@@ -57,9 +61,9 @@ gulp.task('html', ['styles-dist', 'scripts'], () => {
 gulp.task('images', () => {
   return gulp.src('app/images/**/*')
     .pipe(imagemin({
-        progressive: true,
-        svgoPlugins: [{removeViewBox: false}],
-        use: [pngquant()]
+      progressive: true,
+      svgoPlugins: [{removeViewBox: false}],
+      use: [pngquant()]
     }))
     .pipe(gulp.dest('dist/images'));
 });
