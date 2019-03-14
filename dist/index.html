@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VWallet - Verichains</title>
+  <meta name="description" content=""/>
+  <meta name="keywords" content=" "/>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="stylesheet" href="styles/animate.css">
+
+  <script src="scripts/jquery.js"></script>
+
+</head>
+<body>
+<header>
+  <div class="container">
+    <div class="d-flex flex-column flex-md-row align-items-center py-3 mb-3">
+      <div class="my-0 mr-md-auto logo-box">
+        <img src="images/logo.png" width="60" height="60">
+        <span class="logo-text">
+          VWALLET
+        </span>
+      </div>
+      <nav id="menu" class="my-2 my-md-0 mr-md-3">
+        <a class="p-3 text-dark" href="">Home</a>
+        <a class="p-3 text-dark" href="#features">Features</a>
+        <a class="p-3 text-dark" href="#contact">Contact Us</a>
+        <a class="p-3 text-dark" href="#download">Download</a>
+      </nav>
+    </div>
+  </div>
+</header>
+<body>
+<div id="home">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm left-column">
+        <div class="title">
+          Digital Wallet with Excellence Services.
+        </div>
+        <div class="sub-title">
+          The 3 golden rules professional graphic designer don’t want you to know about.
+        </div>
+        <div class="download">
+          <a href="#" onclick="alert('Coming soon')">
+            <img src="images/appstore.png"/>
+          </a>
+          <a href="#" onclick="alert('Coming soon')">
+            <img src="images/playstore.png"/>
+          </a>
+        </div>
+      </div>
+      <div class="col-sm right-column">
+        <img src="images/iphone.png" width="433" height="864"/>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="features">
+  <div class="justify-content-md-center">
+    <div class="feature-title">
+      Provide awesome features for talent traders.
+    </div>
+  </div>
+  <div class="container">
+    <div class="tab-nav row">
+      <div id="feature-1" class="col nav active" onclick="onNavClick(1)">
+        <div class="section">
+          <div>
+            <div class="icon">
+              <img src="images/feature1.png"/>
+            </div>
+            <p>
+              Real-time Market Data
+            </p>
+          </div>
+        </div>
+      </div>
+      <div id="feature-2" class="col nav" onclick="onNavClick(2)">
+        <div class="section">
+          <div>
+            <div class="icon">
+              <img src="images/feature2.png"/>
+            </div>
+            <p>
+              Real-time Notifications
+            </p>
+          </div>
+        </div>
+      </div>
+      <div id="feature-3" class="col nav" onclick="onNavClick(3)">
+        <div class="section">
+          <div>
+            <div class="icon">
+              <img src="images/feature3.png"/>
+            </div>
+            <p>
+              Multi-Signature Wallet
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-content">
+    <div id="tab-1" class="content">
+      <div class="container">
+        <div class="row animated fadeIn">
+          <div class="col-sm align-self-center left-column">
+            <div class="title">
+              Real-time Market Data
+            </div>
+            <div class="sub-title">
+              Monitor real-time market data such as capitalization, charts, prices, trades and volumes of 400+ popular
+              cryptocurrencies from major exchanges.
+            </div>
+          </div>
+          <div class="col-sm right-column">
+            <img src="images/feature1-image.png" width="343" height="508"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="tab-2" class="content">
+      <div class="container">
+        <div class="row animated fadeIn">
+          <div class="col-sm align-self-center left-column">
+            <div class="title">
+              Real-time Notifications
+            </div>
+            <div class="sub-title">
+              Notify users whenever their balance has updated, their trades have executed (on cryptocurrency exchanges)
+              or their transactions were mined (on blockchain).
+            </div>
+          </div>
+          <div class="col-sm right-column">
+            <img src="images/feature2-image.png" width="343" height="508"/>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="tab-3" class="content">
+      <div class="container">
+        <div class="row animated fadeIn">
+          <div class="col-sm align-self-center left-column">
+            <div class="title">
+              Multi Signatures Wallet.
+            </div>
+            <div class="sub-title">
+              Support creating and managing wallets that require the signatures of multiple factors to execute
+              transactions. These factors can be client-server (in Safe Wallet) or multiple users (in Team Wallet).
+            </div>
+          </div>
+          <div class="col-sm right-column">
+            <img src="images/feature3-image.png" width="343" height="508"/>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="new-features">
+    <div class="team-wallet">
+      <div class="container">
+        <div class="feature row">
+          <div class="col">
+
+          </div>
+          <div class="col content-column align-self-center">
+            <div class="title">
+              <img src="images/team-wallet-icon.png" width="60" height="60"/>
+              TeamWallet
+            </div>
+            <div class="sub-title">
+              A wallet that holds money for the team. All transactions must be approved by a required number of team
+              members. The wallet also supports adding or removing members, as well as changing the number of approval
+              required per transaction.
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="metamask">
+        <div class="feature row">
+          <div class="col content-column align-self-center">
+            <div class="title">
+              <img src="images/team-wallet-icon.png" width="60" height="60"/>
+              Metamask Integration
+            </div>
+            <div class="sub-title">
+              The VWallet app works like a hardware wallet. All transactions, contract calls, dApp integrations,... via
+              Metamask on the web browser will be sent to user's device, and must be approved and signed by user (via
+              VWallet app) in order to be executed. Don't need to import private keys directly to Metamask!
+            </div>
+          </div>
+          <div class="col">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="testimonial">
+    <div class="container">
+      <div class="row">
+        <div class="col left-column">
+          <img src="images/client-image.png" width="389" height="428"/>
+        </div>
+        <div class="col right-column">
+          <div class="title">
+            Testimonials
+          </div>
+          <div class="sub-title">
+            Check what’s our client say about us!
+          </div>
+          <div class="customer">
+            <div class="message-container">
+              <span class="message"/>
+            </div>
+            <div class="user">
+              <img class="avatar" src="images/user.png" width="50" height="50"/>
+              <div class="user-info">
+                <div class="name">
+
+                </div>
+                <div class="work">
+
+                </div>
+              </div>
+            </div>
+            <div class="navigation">
+              <a id="prev-testimonial" href="#">
+                <img src="images/prev-arrow.png" width="37" height="13"/>
+              </a>
+              <a id="next-testimonial" href="#">
+                <img src="images/next-arrow.png" width="37" height="13"/>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="partner" class="container">
+    <div class="title">
+      <span>
+        Partner
+      </span>
+    </div>
+    <div class="row brand">
+      <div class="col">
+        <a href="#">
+          <img src="images/logo-lenovo.png" width="114" height="38"/>
+        </a>
+      </div>
+      <div class="col">
+        <a href="#">
+          <img src="images/logo-paypal.png" width="114" height="38"/>
+        </a>
+      </div>
+      <div class="col">
+        <a href="#">
+          <img src="images/logo-airbnb.png" width="114" height="38"/>
+        </a>
+      </div>
+      <div class="col">
+        <a href="#">
+          <img src="images/logo-google.png" width="114" height="38"/>
+        </a>
+      </div>
+      <div class="col">
+        <a href="#">
+          <img src="images/logo-amazon.png" width="114" height="38"/>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <p class="title">Contact Us</p>
+          <form id="contact-form">
+            <div class="input-group input-group-lg mb-3">
+              <input type="text"
+                     id="email-input"
+                     name="email"
+                     required
+                     placeholder="Email Address*"
+                     class="form-control input input-text"
+                     aria-label="Sizing example input"
+                     aria-describedby="inputGroup-sizing-default">
+            </div>
+
+            <div class="input-group input-group-lg mb-3">
+              <textarea rows="5" class="form-control input input-text-area"
+                        name="message"
+                        required
+                        placeholder="Your Message*"
+                        aria-label="With textarea"></textarea>
+            </div>
+
+            <p class="submit-result">
+
+            </p>
+
+            <button type="submit" class="btn btn-lg submit-button">
+              <span style="display: none"
+                    class="loading spinner-border spinner-border-sm"
+                    role="status"
+                    aria-hidden="true"></span>
+              <span class="text">Send Message</span>
+            </button>
+          </form>
+        </div>
+        <div class="col">
+          <img class="image" src="images/contact.png" width="470" height="381"/>
+          <div id="download" class="download">
+            <a href="#" onclick="alert('Coming soon')">
+              <img src="images/appstore.png"/>
+            </a>
+            <a href="#" onclick="alert('Coming soon')">
+              <img src="images/playstore.png"/>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<footer class="footer">
+  <div class="container">
+    <div class="d-flex flex-column flex-md-row align-items-center py-3 mt-3">
+      <h5 class="my-0 mr-md-auto">
+        2019 © Verichains.
+        <a href="#">
+          Terms
+        </a>
+        |
+        <a href="#">
+          Privacy
+        </a>
+        |
+        <a href="#">
+          Security
+        </a>
+      </h5>
+      <div>
+        <img src="images/us.png" width="22" height="13">
+        <span>
+          English
+        </span>
+        <div class="social">
+          <a href="#">
+            <img src="images/facebook.svg" width="20" height="20">
+          </a>
+          <a href="#">
+            <img src="images/twitter.png" width="20" height="20">
+          </a>
+          <a href="#">
+            <img src="images/telegram.png" width="20" height="20">
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript" src="scripts/main.js"></script>
+</body>
+</html>
