@@ -21,6 +21,8 @@ gulp.task('style', function () {
   gulp.src('app/styles/**/*.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest('.tmp/styles'));
+  gulp.src('app/styles/**/*.css')
+    .pipe(gulp.dest('.tmp/styles'));
 });
 
 gulp.task('styles-dist', function () {
@@ -91,6 +93,7 @@ gulp.task('serve', ['style'], () => {
   gulp.watch([
     'app/*.html',
     'app/scripts/**/*.js',
+    'app/styles/**/*.css',
     'app/images/**/*',
     'app/fonts/**/*',
   ]).on('change', reload);
