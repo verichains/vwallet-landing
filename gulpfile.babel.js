@@ -46,7 +46,7 @@ gulp.task('scripts', () => {
     .pipe(gulp.dest('dist/scripts'))
 });
 
-gulp.task('html', ['styles-dist', 'scripts'], () => {
+gulp.task('html', ['styles-dist'], () => {
   const assets = $.useref.assets({searchPath: ['app', '.']});
 
   return gulp.src('app/*.html')
@@ -120,7 +120,7 @@ gulp.task('copy-index', function () {
     .pipe(gulp.dest('./'));
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'minify-css', 'minify-js', 'extras', 'copy-index'], () => {
+gulp.task('build', ['html', 'images', 'fonts', 'minify-css', 'minify-js', 'extras'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 

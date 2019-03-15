@@ -83,19 +83,91 @@
           }
         }
       }
+
+      #testimonial {
+        margin-bottom: 300px;
+
+        .container {
+          padding-top: 96px;
+
+          .right-column {
+            margin-left: 0px;
+
+            .title {
+              text-align: center;
+              font-size: $mobile-font-size;
+            }
+
+            .sub-title {
+              text-align: center;
+              font-size: $mobile-font-size - 6px;
+              margin-bottom: $mobile-margin;
+            }
+
+            .separator {
+              position: relative;
+              height: 15px;
+              width: 100px;
+              margin: 0 auto;
+              text-align: center;
+              padding-bottom: 16px;
+
+              &:before {
+                position: absolute;
+                content: '';
+                left: 0px;
+                top: 5px;
+                width: 20px;
+                height: 1px;
+                background-color: $primary;
+              }
+
+              &:after {
+                position: absolute;
+                content: '';
+                right: 0px;
+                top: 5px;
+                width: 20px;
+                height: 1px;
+                background-color: $primary;
+              }
+
+              .dot {
+                position: relative;
+                width: 6px;
+                height: 6px;
+                top: -9px;
+                border-radius: 50%;
+                display: inline-block;
+                background-color: $primary;
+              }
+            }
+
+            .navigation {
+              margin-top: $mobile-margin;
+            }
+          }
+        }
+      }
     }
   }
 
-  .download {
+  #download {
     img {
-      width: 188px;
-      height: 56px;
-    }
 
-    img:nth-child(1) {
-      margin-right: 8px;
+      &:nth-child(1) {
+      }
     }
+  }
+  .mobile-hide {
+    display: none !important;
+  }
+
+  .footer-1 {
+    margin-bottom: 6px !important;
   }
 }
 
 @import "new-features-mobile";
+@import "partner-mobile";
+@import "contact-mobile";
