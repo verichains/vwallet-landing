@@ -1,12 +1,12 @@
-const gulp = require( 'gulp');
-const gulpLoadPlugins = require( 'gulp-load-plugins');
-const browserSync = require( 'browser-sync');
-const del = require( 'del');
-const minifyCss = require( 'gulp-minify-css');
-const minifyJs = require( 'gulp-uglify');
-const imagemin = require( 'gulp-imagemin');
-const pngquant = require( 'imagemin-pngquant');
-const sass = require( 'gulp-sass');
+const gulp = require('gulp');
+const gulpLoadPlugins = require('gulp-load-plugins');
+const browserSync = require('browser-sync');
+const del = require('del');
+const minifyCss = require('gulp-minify-css');
+const minifyJs = require('gulp-uglify');
+const imagemin = require('gulp-imagemin');
+const pngquant = require('imagemin-pngquant');
+const sass = require('gulp-sass');
 const babel = require('gulp-babel');
 
 const $ = gulpLoadPlugins();
@@ -115,7 +115,12 @@ gulp.task('serve:dist', () => {
   });
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'minify-css', 'minify-js', 'extras'], () => {
+gulp.task('copy-index', function () {
+  gulp.src('app/index.html')
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('build', ['html', 'images', 'fonts', 'minify-css', 'minify-js', 'extras', 'copy-index'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 
