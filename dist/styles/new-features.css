@@ -1,1 +1,7 @@
-#new-features .metamask,#new-features .team-wallet{height:562px;background-repeat:no-repeat;background-size:contain;background-position:center;margin:120px 0}#new-features .team-wallet{background-image:url(../images/bg-team-wallet.png)}#new-features .team-wallet .feature{height:562px}#new-features .metamask{background-image:url(../images/bg-metamask.png)}#new-features .content-column .title{font-size:42px;line-height:58px;font-weight:500;margin-bottom:24px}#new-features .content-column .title img{margin-right:32px}#new-features .content-column .sub-title{font-size:18px;line-height:32px;text-align:justify;color:rgba(6,31,53,.8)}
+#new-features .metamask,#new-features .risk-aware-mechanism,#new-features .team-wallet{height:562px;background-repeat:no-repeat;background-size:contain;background-position:center;margin:120px 0}#new-features .risk-aware-mechanism,#new-features .team-wallet{background-image:url(../images/bg-team-wallet.png)}#new-features .risk-aware-mechanism .feature,#new-features .team-wallet .feature{height:562px}#new-features .metamask{background-image:url(../images/bg-metamask.png)}#new-features .content-column .title{font-size:40px;line-height:58px;font-weight:500;margin-bottom:24px}#new-features .content-column .title img{margin-right:32px}#new-features .content-column .sub-title{font-size:18px;line-height:32px;text-align:justify;color:rgba(6,31,53,.8)}ght: 32px; }
+
+#new-features .content-column .sub-title {
+  font-size: 18px;
+  line-height: 32px;
+  text-align: justify;
+  color: rgba(6, 31, 53, 0.8); }
