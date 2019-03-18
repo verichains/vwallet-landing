@@ -22,9 +22,15 @@
       }
 
       .metamask-item {
+        margin: 36px 0;
+
         .feature {
           display: flex;
           justify-content: flex-end;
+        }
+
+        .title {
+          margin-right: 6px;
         }
       }
     }
