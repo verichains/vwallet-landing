@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   version: 1.0.0
-  title: VWallet
+  title: vWallet
   contact:
     email: vwallet@verichains.io
   license:
@@ -10,10 +10,10 @@ info:
   x-logo:
     url: logo.png
   description: |
-    VWallet provides a simple and robust RESTful API to integrate digital currency wallets with your application.
+    vWallet provides a simple and robust RESTful API to integrate digital currency wallets with your application.
 
     # Overview
-    The VWallet API enables the following:
+    The vWallet API enables the following:
     - Safe wallet: multi-signature wallet
     - Team wallet: for use in enterprise environments
     - Wallet balance and transaction listing
@@ -24,7 +24,7 @@ info:
     - Realtime data for crypto
     - Tracking data in exchange market
     # SDK
-    VWallet SDK will be available soon.
+    vWallet SDK will be available soon.
 tags:
   - name: Auth
     description: Operations about authentication

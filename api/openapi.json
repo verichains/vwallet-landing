@@ -2,7 +2,7 @@
   "openapi": "3.0.0",
   "info": {
     "version": "1.0.0",
-    "title": "VWallet",
+    "title": "vWallet",
     "contact": {
       "email": "vwallet@verichains.io"
     },
@@ -13,7 +13,7 @@
     "x-logo": {
       "url": "logo.png"
     },
-    "description": "VWallet provides a simple and robust RESTful API to integrate digital currency wallets with your application.\n\n# Overview\nThe VWallet API enables the following:\n- Safe wallet: multi-signature wallet\n- Team wallet: for use in enterprise environments\n- Wallet balance and transaction listing\n- Transaction creation and signing\n- Transaction monitoring and notifications\n- Secure user authentication\n- Policies and spending limits\n- Realtime data for crypto\n- Tracking data in exchange market\n# SDK\nVWallet SDK will be available soon.\n"
+    "description": "vWallet provides a simple and robust RESTful API to integrate digital currency wallets with your application.\n\n# Overview\nThe vWallet API enables the following:\n- Safe wallet: multi-signature wallet\n- Team wallet: for use in enterprise environments\n- Wallet balance and transaction listing\n- Transaction creation and signing\n- Transaction monitoring and notifications\n- Secure user authentication\n- Policies and spending limits\n- Realtime data for crypto\n- Tracking data in exchange market\n# SDK\nvWallet SDK will be available soon.\n"
   },
   "tags": [
     {
