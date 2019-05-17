@@ -1,0 +1,2446 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "VWallet",
+    "contact": {
+      "email": "vwallet@verichains.io"
+    },
+    "license": {
+      "name": "Apache 2.0",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    },
+    "x-logo": {
+      "url": "logo.png"
+    },
+    "description": "VWallet provides a simple and robust RESTful API to integrate digital currency wallets with your application.\n\n# Overview\nThe VWallet API enables the following:\n- Safe wallet: multi-signature wallet\n- Team wallet: for use in enterprise environments\n- Wallet balance and transaction listing\n- Transaction creation and signing\n- Transaction monitoring and notifications\n- Secure user authentication\n- Policies and spending limits\n- Realtime data for crypto\n- Tracking data in exchange market\n# SDK\nVWallet SDK will be available soon.\n"
+  },
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Operations about authentication"
+    },
+    {
+      "name": "Wallet",
+      "description": "Operations about wallet"
+    },
+    {
+      "name": "Portfolio",
+      "description": "Operations about portfolio"
+    },
+    {
+      "name": "Coins",
+      "description": "Operations about coins"
+    },
+    {
+      "name": "Exchanges",
+      "description": "Operations about exchanges"
+    },
+    {
+      "name": "SafeWallet",
+      "description": "Operations about Safe Wallet"
+    },
+    {
+      "name": "TeamWallet",
+      "description": "Operations about Team Wallet"
+    },
+    {
+      "name": "Contacts"
+    },
+    {
+      "name": "Key"
+    }
+  ],
+  "servers": [
+    {
+      "url": "https://dev.vwallet.io/api/v1",
+      "description": "Sandbox server"
+    },
+    {
+      "url": "https://pro.vwallet.io/api/v1",
+      "description": "Live server"
+    }
+  ],
+  "x-tagGroups": [
+    {
+      "name": "Profile",
+      "tags": [
+        "Auth",
+        "Wallet",
+        "Portfolio",
+        "Contacts",
+        "Key"
+      ]
+    },
+    {
+      "name": "Markets",
+      "tags": [
+        "Coins",
+        "Exchanges"
+      ]
+    },
+    {
+      "name": "Multisig Wallet",
+      "tags": [
+        "SafeWallet",
+        "TeamWallet"
+      ]
+    }
+  ],
+  "paths": {
+    "/coins": {
+      "get": {
+        "tags": [
+          "Coins"
+        ],
+        "summary": "List all cryptocurrencies",
+        "description": "List all supported cryptocurrencies",
+        "operationId": "coin/list",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Coin"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/coins/{coinId}": {
+      "get": {
+        "tags": [
+          "Coins"
+        ],
+        "summary": "Get coin detail",
+        "description": "Get coin detail",
+        "operationId": "coin/detail",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Coin"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/coinId"
+          }
+        ]
+      }
+    },
+    "/coins/{coinId}/markets": {
+      "get": {
+        "tags": [
+          "Coins"
+        ],
+        "summary": "Get coin markets",
+        "description": "Get coin markets",
+        "operationId": "coin/markets",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/CoinMarket"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/coinId"
+          }
+        ]
+      }
+    },
+    "/exchanges": {
+      "get": {
+        "tags": [
+          "Exchanges"
+        ],
+        "summary": "List all supported exchanges",
+        "description": "List all supported exchanges",
+        "operationId": "exchange/list",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Exchange"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/exchanges/{exchangeId}": {
+      "get": {
+        "tags": [
+          "Exchanges"
+        ],
+        "summary": "Get exchange detail",
+        "description": "Get exchange detail",
+        "operationId": "exchange/detail",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/exchangeId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Exchange"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/exchanges/{exchangeId}/markets": {
+      "get": {
+        "tags": [
+          "Exchanges"
+        ],
+        "summary": "List all market pairs",
+        "description": "List all market pairs supported in exchange",
+        "operationId": "exchange/markets",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/exchangeId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Market"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Get access token",
+        "description": "Get access token",
+        "operationId": "auth/login",
+        "responses": {
+          "200": {
+            "description": "Login succeed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/AccessToken"
+                    }
+                  }
+                },
+                "example": {
+                  "data": {
+                    "access_token": "XxXx",
+                    "expires_in": 1234567890
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": {
+                    "code": 400,
+                    "status": "BAD_REQUEST",
+                    "message": "Invalid email"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": {
+                    "code": 401,
+                    "status": "UNAUTHORIZED",
+                    "message": "Wrong email or password"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Login"
+        }
+      }
+    },
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "Register",
+        "description": "Register new account",
+        "operationId": "auth/register",
+        "responses": {
+          "200": {
+            "description": "Register succeed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/User"
+                    }
+                  }
+                },
+                "example": {
+                  "data": {
+                    "id": 11,
+                    "name": "Jonny Waler",
+                    "email": "jonnywalker@bar.pub"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": {
+                    "code": 400,
+                    "status": "BAD_REQUEST",
+                    "message": "Invalid email"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": {
+                    "code": 409,
+                    "status": "CONFLICT",
+                    "message": "Email is already registered"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Register"
+        }
+      }
+    },
+    "/contacts": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Get all user contacts",
+        "description": "Get all user contacts",
+        "operationId": "contacts/list",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Contact"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Add contact",
+        "description": "Add contact",
+        "operationId": "contacts/add",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Contact added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Contact"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/AddContact"
+        }
+      }
+    },
+    "/contacts/{contactId}": {
+      "get": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Get contact detail",
+        "description": "Get contact detail",
+        "operationId": "contact/detail",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Contact"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/contactId"
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Contacts"
+        ],
+        "summary": "Remove contact",
+        "description": "Remove contact",
+        "operationId": "contacts/remove",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Contact removed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Contact"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/contactId"
+          }
+        ]
+      }
+    },
+    "/keys": {
+      "get": {
+        "tags": [
+          "Key"
+        ],
+        "summary": "List keys",
+        "description": "List all user' keys",
+        "operationId": "key/list",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Key"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Key"
+        ],
+        "summary": "Create key",
+        "description": "Create key",
+        "operationId": "keys/create",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CreateKey"
+        },
+        "responses": {
+          "201": {
+            "description": "Succeed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Key"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/keys/{keyId}": {
+      "get": {
+        "tags": [
+          "Key"
+        ],
+        "summary": "Get key",
+        "description": "Get key",
+        "operationId": "key/detail",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/keyId"
+          }
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Key"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/portfolios": {
+      "get": {
+        "tags": [
+          "Portfolio"
+        ],
+        "summary": "List user portfolio",
+        "description": "List all user's portfolios",
+        "operationId": "portfolios/list",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Portfolio"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Portfolio"
+        ],
+        "summary": "Add portfolio",
+        "description": "Add portfolio",
+        "operationId": "portfolios/add",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Portfolio added",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Portfolio"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/portfolios/{portfolioId}": {
+      "get": {
+        "tags": [
+          "Portfolio"
+        ],
+        "summary": "Get portfolio detail",
+        "description": "Get portfolio detail",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Portfolio"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/portfolioId"
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Portfolio"
+        ],
+        "summary": "Remove portfolio",
+        "description": "Remove portfolio",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Portfolio removed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Portfolio"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/portfolioId"
+          }
+        ]
+      }
+    },
+    "/wallets": {
+      "get": {
+        "tags": [
+          "Wallet"
+        ],
+        "summary": "List user wallet",
+        "description": "List all user's wallets",
+        "operationId": "wallets/list",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Wallet"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Wallet"
+        ],
+        "summary": "Add wallet",
+        "description": "Add wallet",
+        "operationId": "wallets/add",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Succeed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Wallet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/safe-wallets": {
+      "get": {
+        "tags": [
+          "SafeWallet"
+        ],
+        "summary": "List safe wallets",
+        "description": "List all user's safe wallets",
+        "operationId": "safe-wallets/list",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/SafeWallet"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SafeWallet"
+        ],
+        "summary": "Create safe wallet",
+        "description": "This Api call create a new safe wallet. The steps you need to do to use this api:\n\n 1. Create a new key or use existing key to use as main key\n\n 2. Create a new key or use existing key to use as backup key\n\n 3. Use 2 keys from step 1 and 2 to create new safe wallet ",
+        "operationId": "safe-wallets/create",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CreateSafeWallet"
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/SafeWallet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/safe-wallets/{safeWalletId}": {
+      "get": {
+        "tags": [
+          "SafeWallet"
+        ],
+        "summary": "Get safe wallet",
+        "description": "Get safe wallet",
+        "operationId": "safe-wallets/detail",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/safeWalletId"
+          }
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/SafeWallet"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "SafeWallet"
+        ],
+        "summary": "Remove safe wallet",
+        "description": "Remove safe wallet",
+        "operationId": "safe-wallets/remove",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/safeWalletId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SafeWallet removed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/SafeWallet"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/safe-wallets/{safeWalletId}/balance": {
+      "get": {
+        "tags": [
+          "SafeWallet"
+        ],
+        "summary": "Get safe wallet balance",
+        "description": "Get safe wallet balance",
+        "operationId": "safe-wallets/balance/get",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/safeWalletId"
+          }
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Balance"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/safe-wallets/{safeWalletId}/transactions": {
+      "get": {
+        "tags": [
+          "SafeWallet"
+        ],
+        "summary": "Get safe wallet transactions list",
+        "description": "Get safe wallet transactions list",
+        "operationId": "safe-wallets/transactions/list",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/safeWalletId"
+          }
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Transaction"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/safe-wallets/{safeWalletId}/transactions/{transactionId}": {
+      "get": {
+        "tags": [
+          "SafeWallet"
+        ],
+        "summary": "Get safe wallet transaction detail",
+        "description": "Get safe wallet transactions detail",
+        "operationId": "safe-wallets/transactions/detail",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/safeWalletId"
+          }
+        ],
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "$ref": "#/components/schemas/Transaction"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/teams": {
+      "get": {
+        "tags": [
+          "TeamWallet"
+        ],
+        "summary": "List all team wallet",
+        "description": "List all team wallet",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/Team"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "TeamWallet"
+        ],
+        "summary": "Create team wallet",
+        "description": "Create team wallet",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/CreateTeam"
+        },
+        "responses": {
+          "201": {
+            "description": "Team wallet created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Team"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        }
+      }
+    },
+    "/teams/{teamId}": {
+      "get": {
+        "tags": [
+          "TeamWallet"
+        ],
+        "summary": "Get team wallet detail",
+        "description": "Get team wallet detail",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Team"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/teamId"
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "TeamWallet"
+        ],
+        "summary": "Remove team wallet",
+        "description": "Remove team wallet",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Team wallet removed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/Team"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/teamId"
+          }
+        ]
+      }
+    },
+    "/teams/{teamId}/roles/{roleId}": {
+      "get": {
+        "tags": [
+          "TeamWallet"
+        ],
+        "summary": "Get role detail",
+        "description": "Get role detail of team wallet",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TeamRole"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/teamId"
+          },
+          {
+            "$ref": "#/components/parameters/roleId"
+          }
+        ]
+      }
+    },
+    "/teams/{teamId}/roles/{roleId}/addMember": {
+      "post": {
+        "tags": [
+          "TeamWallet"
+        ],
+        "summary": "Add member to team",
+        "description": "Add new member to team wallet. It will add a transaction to team wallet and waiting for enough approvals to execute.\n",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/AddTeamMember"
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TeamRole"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/teamId"
+          },
+          {
+            "$ref": "#/components/parameters/roleId"
+          }
+        ]
+      }
+    },
+    "/teams/{teamId}/roles/{roleId}/changeRequired": {
+      "post": {
+        "tags": [
+          "TeamWallet"
+        ],
+        "summary": "Change role required",
+        "description": "Change the number of approvals required for a role of team wallet. It will add a transaction to team wallet and waiting for enough approvals to execute.\n",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ChangeRequired"
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TeamRole"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/teamId"
+          },
+          {
+            "$ref": "#/components/parameters/roleId"
+          }
+        ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "integer",
+                "description": "Error code, i.e: 200, 201, 400, 500, ...",
+                "example": 200
+              },
+              "status": {
+                "type": "string",
+                "description": "Error status, i.e: OK, UNAUTHORIZED, ...",
+                "example": "OK"
+              },
+              "message": {
+                "type": "string",
+                "description": "Error full message",
+                "example": "OK"
+              }
+            }
+          }
+        }
+      },
+      "Key": {
+        "type": "object",
+        "required": [
+          "id",
+          "encryptedPrv",
+          "address",
+          "isServerKey",
+          "type"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "encryptedPrv": {
+            "type": "string",
+            "description": "The encrypted private key"
+          },
+          "address": {
+            "type": "string",
+            "description": "Wallet Address"
+          },
+          "isServerKey": {
+            "type": "boolean"
+          },
+          "type": {
+            "type": "string",
+            "example": "user",
+            "description": "Enum: ```backup``` ```user```"
+          }
+        }
+      },
+      "Coin": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Coin id",
+            "example": 1
+          },
+          "slug": {
+            "type": "string",
+            "example": "btc"
+          },
+          "rank": {
+            "type": "integer",
+            "description": "Coin rank",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Coin name",
+            "example": "Bitcoin"
+          },
+          "symbol": {
+            "type": "string",
+            "description": "Coin symbol",
+            "example": "BTC"
+          },
+          "total_supply": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Total supply",
+            "example": 16950100
+          },
+          "max_supply": {
+            "type": "integer",
+            "format": "int64",
+            "description": "Maximum supply",
+            "example": 21000000
+          },
+          "quote": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Quote"
+            },
+            "example": {
+              "USD": {
+                "price": 9283.92,
+                "volume_24h": 7155680000,
+                "market_cap": 158055024432
+              },
+              "BTC": {
+                "price": 1,
+                "volume_24h": 772012,
+                "market_cap": 17024600
+              }
+            }
+          }
+        }
+      },
+      "CoinMarket": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "exchange": {
+            "$ref": "#/components/schemas/ExchangeInfo"
+          },
+          "pair": {
+            "type": "string",
+            "example": "BTC/USDT"
+          },
+          "pair_base": {
+            "$ref": "#/components/schemas/ExchangeCoinInfo"
+          },
+          "pair_quote": {
+            "$ref": "#/components/schemas/ExchangeCoinInfo"
+          }
+        }
+      },
+      "Exchange": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Exchange id",
+            "example": 1
+          },
+          "slug": {
+            "type": "string",
+            "example": "binance"
+          },
+          "name": {
+            "type": "string",
+            "description": "Exchange name",
+            "example": "Binance"
+          },
+          "socials": {
+            "type": "object",
+            "description": "Social informations of exchange",
+            "example": {
+              "website": "https://www.binance.com",
+              "blog": "https://www.binance.com/en/blog"
+            }
+          }
+        }
+      },
+      "ExchangeCoin": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Coin id",
+            "example": 1
+          },
+          "symbol": {
+            "type": "string",
+            "example": "BTC"
+          }
+        }
+      },
+      "ExchangeCoinInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Coin id",
+            "example": 1
+          },
+          "symbol": {
+            "type": "string",
+            "example": "BTC"
+          }
+        }
+      },
+      "ExchangeInfo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Exchange id",
+            "example": 1
+          },
+          "slug": {
+            "type": "string",
+            "example": "binance"
+          },
+          "name": {
+            "type": "string",
+            "description": "Exchange name",
+            "example": "Binance"
+          }
+        }
+      },
+      "Market": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Coin id",
+            "example": 1
+          },
+          "pair": {
+            "type": "string",
+            "example": "BTC/USDT"
+          },
+          "pair_base": {
+            "$ref": "#/components/schemas/ExchangeCoinInfo"
+          },
+          "pair_quote": {
+            "$ref": "#/components/schemas/ExchangeCoinInfo"
+          }
+        }
+      },
+      "Quote": {
+        "type": "object",
+        "properties": {
+          "price": {
+            "type": "number",
+            "format": "double",
+            "example": 9283.92
+          },
+          "volume_24h": {
+            "type": "number",
+            "format": "double",
+            "example": 7155680000
+          },
+          "market_cap": {
+            "type": "number",
+            "format": "double",
+            "example": 158055024432
+          }
+        }
+      },
+      "AccessToken": {
+        "type": "object",
+        "properties": {
+          "access_token": {
+            "description": "Access token",
+            "type": "string"
+          },
+          "expires_in": {
+            "description": "Expires in",
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          }
+        }
+      },
+      "Contact": {
+        "description": "User contact",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1234
+          },
+          "name": {
+            "type": "string",
+            "example": "David"
+          },
+          "address": {
+            "type": "string",
+            "example": "0x1234....4321"
+          }
+        }
+      },
+      "Portfolio": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "My Portfolio"
+          },
+          "wallets": {
+            "items": {
+              "$ref": "#/components/schemas/Wallet"
+            }
+          }
+        }
+      },
+      "Wallet": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "My Ether Wallet"
+          },
+          "address": {
+            "type": "string",
+            "example": "0xa7698F43Ab59ad92F499913cf203022932a47982"
+          }
+        }
+      },
+      "SafeWallet": {
+        "required": [
+          "id",
+          "name",
+          "address",
+          "coin",
+          "keys"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "example": "My Safe Wallet"
+          },
+          "address": {
+            "type": "string",
+            "example": "0xa7698F43Ab59ad92F499913cf203022932a47982"
+          },
+          "coin": {
+            "type": "string",
+            "example": "eth",
+            "description": "eth"
+          },
+          "keys": {
+            "type": "array",
+            "items": {
+              "type": "int"
+            },
+            "example": [
+              1,
+              2,
+              3
+            ]
+          }
+        }
+      },
+      "Team": {
+        "description": "Team wallet",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 123
+          },
+          "name": {
+            "type": "string",
+            "example": "Avenger"
+          },
+          "roles": {
+            "items": {
+              "$ref": "#/components/schemas/TeamRole"
+            }
+          }
+        }
+      },
+      "TeamMember": {
+        "description": "Team Wallet member",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          }
+        }
+      },
+      "TeamRole": {
+        "description": "Team Role",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "ID of role",
+            "example": 1
+          },
+          "name": {
+            "type": "string",
+            "description": "Role name, e.g: `Legal`, `Finance`",
+            "example": "Finance"
+          },
+          "required": {
+            "type": "integer",
+            "description": "Number of approvals required for transactions",
+            "example": 2
+          },
+          "members": {
+            "description": "Wallet address of member",
+            "items": {
+              "$ref": "#/components/schemas/TeamMember"
+            },
+            "example": [
+              {
+                "id": 1,
+                "name": "Alice",
+                "address": "0x1234...4321"
+              },
+              {
+                "id": 2,
+                "name": "Bob",
+                "address": "0x3456...4321"
+              }
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "required",
+          "members"
+        ]
+      },
+      "Transaction": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "coin": {
+            "type": "string",
+            "example": "eth"
+          },
+          "walletId": {
+            "type": "integer",
+            "example": 1
+          },
+          "date": {
+            "type": "string <date-time>",
+            "example": "2019-01-12T12:02:15Z"
+          },
+          "type": {
+            "type": "string",
+            "example": "send",
+            "description": "Enum: ```send``` ```receive```"
+          },
+          "valueString": {
+            "type": "string",
+            "example": "30000000"
+          },
+          "state": {
+            "type": "string",
+            "example": "signed",
+            "description": "Enum: ```signed``` ```unconfirmed``` ```confirmed``` ```failed```"
+          },
+          "comment": {
+            "type": "string"
+          },
+          "tx": {
+            "$ref": "#/components/schemas/Tx"
+          }
+        }
+      },
+      "Tx": {
+        "properties": {
+          "hash": {
+            "type": "string"
+          },
+          "nonce": {
+            "type": "integer",
+            "example": 2
+          },
+          "blockHash": {
+            "type": "string"
+          },
+          "blockNumber": {
+            "type": "number"
+          },
+          "from": {
+            "type": "string"
+          },
+          "to": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "gas": {
+            "type": "number"
+          },
+          "gasPrice": {
+            "type": "string"
+          },
+          "input": {
+            "type": "string",
+            "example": "0x57cb2fc4"
+          }
+        }
+      },
+      "Balance": {
+        "additionalProperties": {
+          "$ref": "#/components/schemas/CoinBalance"
+        }
+      },
+      "CoinBalance": {
+        "required": [
+          "balanceString",
+          "confirmedBalanceString",
+          "heldBalanceString",
+          "spendableBalanceString"
+        ],
+        "properties": {
+          "balanceString": {
+            "type": "string",
+            "example": "40000"
+          },
+          "confirmedBalanceString": {
+            "type": "string",
+            "example": "10000"
+          },
+          "heldBalanceString": {
+            "type": "string",
+            "example": "30000"
+          },
+          "spendableBalanceString": {
+            "type": "string",
+            "example": "10000"
+          }
+        }
+      }
+    },
+    "responses": {
+      "All": {
+        "200": {
+          "description": "OK"
+        },
+        "400": {
+          "$ref": "#/components/responses/BadRequest"
+        },
+        "401": {
+          "$ref": "#/components/responses/Unauthorized"
+        }
+      },
+      "BadRequest": {
+        "description": "Bad request",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "example": {
+              "error": {
+                "code": 400,
+                "status": "BAD_REQUEST",
+                "message": "Invalid request"
+              }
+            }
+          }
+        }
+      },
+      "Unauthorized": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "example": {
+              "error": {
+                "code": 401,
+                "status": "UNAUTHORIZED",
+                "message": "Unauthorized"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parameters": {
+      "keyId": {
+        "name": "keyId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "coinId": {
+        "name": "coinId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "exchangeId": {
+        "name": "exchangeId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "contactId": {
+        "name": "contactId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "portfolioId": {
+        "name": "portfolioId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "safeWalletId": {
+        "name": "safeWalletId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "roleId": {
+        "name": "roleId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "teamId": {
+        "name": "teamId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      }
+    },
+    "headers": {
+      "ExpiresAfter": {
+        "description": "date in UTC when token expires",
+        "schema": {
+          "type": "string",
+          "format": "date-time"
+        }
+      }
+    },
+    "requestBodies": {
+      "Login": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "email": {
+                  "type": "string",
+                  "description": "Email"
+                },
+                "password": {
+                  "type": "string",
+                  "description": "Password"
+                }
+              },
+              "required": [
+                "email",
+                "password"
+              ],
+              "example": {
+                "email": "jonnywalker@bar.pub",
+                "password": "123456"
+              }
+            }
+          }
+        },
+        "required": true
+      },
+      "Register": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Fullname"
+                },
+                "email": {
+                  "type": "string",
+                  "description": "Email"
+                },
+                "password": {
+                  "type": "string",
+                  "description": "Password"
+                }
+              },
+              "required": [
+                "name",
+                "email",
+                "password"
+              ],
+              "example": {
+                "name": "Jonny Walker",
+                "email": "jonnywalker@bar.pub",
+                "password": "123456"
+              }
+            }
+          }
+        },
+        "required": true
+      },
+      "CreateKey": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "Key",
+              "required": [
+                "encryptedPrv",
+                "address",
+                "type"
+              ],
+              "properties": {
+                "encryptedPrv": {
+                  "type": "string",
+                  "required": true
+                },
+                "address": {
+                  "type": "string",
+                  "required": true
+                },
+                "type": {
+                  "type": "string",
+                  "required": true,
+                  "description": "Enum: ```backup``` ```user```"
+                }
+              }
+            }
+          }
+        },
+        "required": true
+      },
+      "AddContact": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "User contact",
+              "required": [
+                "name",
+                "address"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "David"
+                },
+                "address": {
+                  "type": "string",
+                  "example": "0x1234....4321"
+                }
+              }
+            }
+          }
+        },
+        "required": true
+      },
+      "CreateSafeWallet": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "Create safe wallet",
+              "required": [
+                "name",
+                "userKey",
+                "backupKey"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "Safe Wallet"
+                },
+                "userKey": {
+                  "type": "integer",
+                  "example": 1,
+                  "description": "Key Id"
+                },
+                "backupKey": {
+                  "type": "integer",
+                  "example": 2,
+                  "description": "Backup Key Id"
+                }
+              }
+            }
+          }
+        },
+        "required": true
+      },
+      "AddTeamMember": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "Add member to team wallet",
+              "required": [
+                "name",
+                "address"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "David"
+                },
+                "address": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "required": true
+      },
+      "ChangeRequired": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "Change role required",
+              "required": [
+                "newRequired"
+              ],
+              "properties": {
+                "newRequired": {
+                  "type": "integer",
+                  "description": "New required for role"
+                }
+              }
+            }
+          }
+        },
+        "required": true
+      },
+      "CreateTeam": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "Create team wallet",
+              "required": [
+                "name",
+                "roles"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "My Team Wallet"
+                },
+                "roles": {
+                  "items": {
+                    "$ref": "#/components/schemas/TeamRole"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": true
+      }
+    },
+    "securitySchemes": {
+      "JWT": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "This scheme relies on authenticating users by having them present a standard `Authorization` header containing the value `Bearer ` followed by their API key.\n"
+      }
+    }
+  }
+}
