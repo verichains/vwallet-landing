@@ -87,6 +87,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
   '/coins/{coinId}':
     get:
       tags:
@@ -109,6 +111,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
       parameters:
         - $ref: '#/components/parameters/coinId'
   '/coins/{coinId}/markets':
@@ -159,6 +163,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
   '/exchanges/{exchangeId}':
     get:
       tags:
@@ -183,6 +189,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
   '/exchanges/{exchangeId}/markets':
     get:
       tags:
@@ -208,6 +216,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
   /auth/login:
     post:
       tags:
@@ -250,6 +260,8 @@ paths:
                   code: 401
                   status: UNAUTHORIZED
                   message: Wrong email or password
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
       requestBody:
         $ref: '#/components/requestBodies/Login'
   /auth/register:
@@ -286,6 +298,8 @@ paths:
                   message: Invalid email
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
         '409':
           description: Conflict
           content:
@@ -322,6 +336,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
     post:
       tags:
         - Contacts
@@ -343,6 +359,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
       requestBody:
         $ref: '#/components/requestBodies/AddContact'
   '/contacts/{contactId}':
@@ -367,6 +385,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
       parameters:
         - $ref: '#/components/parameters/contactId'
     delete:
@@ -390,6 +410,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
       parameters:
         - $ref: '#/components/parameters/contactId'
   /keys:
@@ -482,6 +504,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
     post:
       tags:
         - Portfolio
@@ -503,6 +527,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
   '/portfolios/{portfolioId}':
     get:
       tags:
@@ -524,6 +550,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
       parameters:
         - $ref: '#/components/parameters/portfolioId'
     delete:
@@ -546,6 +574,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
       parameters:
         - $ref: '#/components/parameters/portfolioId'
   /wallets:
@@ -686,6 +716,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
   '/safe-wallets/{safeWalletId}/balance':
     get:
       tags:
@@ -780,6 +812,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
     post:
       tags:
         - TeamWallet
@@ -802,6 +836,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
   '/teams/{teamId}':
     get:
       tags:
@@ -823,6 +859,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
       parameters:
         - $ref: '#/components/parameters/teamId'
     delete:
@@ -845,6 +883,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
       parameters:
         - $ref: '#/components/parameters/teamId'
   '/teams/{teamId}/roles/{roleId}':
@@ -868,33 +908,8 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
-      parameters:
-        - $ref: '#/components/parameters/teamId'
-        - $ref: '#/components/parameters/roleId'
-  '/teams/{teamId}/roles/{roleId}/addMember':
-    post:
-      tags:
-        - TeamWallet
-      summary: Add member to team
-      description: |
-        Add new member to team wallet. It will add a transaction to team wallet and waiting for enough approvals to execute.
-      security:
-        - JWT: []
-      requestBody:
-        $ref: '#/components/requestBodies/AddTeamMember'
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                properties:
-                  data:
-                    $ref: '#/components/schemas/TeamRole'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
       parameters:
         - $ref: '#/components/parameters/teamId'
         - $ref: '#/components/parameters/roleId'
@@ -922,9 +937,263 @@ paths:
           $ref: '#/components/responses/BadRequest'
         '401':
           $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
       parameters:
         - $ref: '#/components/parameters/teamId'
         - $ref: '#/components/parameters/roleId'
+  '/teams/{teamId}/roles/{roleId}/members':
+    get:
+      tags:
+        - TeamWallet
+      summary: List member
+      description: |
+        List all members of a role of team.
+      security:
+        - JWT: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/TeamMember'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
+      parameters:
+        - $ref: '#/components/parameters/teamId'
+        - $ref: '#/components/parameters/roleId'
+    post:
+      tags:
+        - TeamWallet
+      summary: Add member
+      description: |
+        Add new member to team wallet. It will add a transaction to team wallet and waiting for enough approvals to execute.
+      security:
+        - JWT: []
+      requestBody:
+        $ref: '#/components/requestBodies/AddTeamMember'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TeamRole'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
+      parameters:
+        - $ref: '#/components/parameters/teamId'
+        - $ref: '#/components/parameters/roleId'
+  '/teams/{teamId}/roles/{roleId}/members/{memberId}':
+    get:
+      tags:
+        - TeamWallet
+      summary: Get member detail
+      description: |
+        Get detail of member.
+      security:
+        - JWT: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/TeamMember'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
+      parameters:
+        - $ref: '#/components/parameters/teamId'
+        - $ref: '#/components/parameters/roleId'
+        - $ref: '#/components/parameters/memberId'
+    put:
+      tags:
+        - TeamWallet
+      summary: Update member
+      description: |
+        Update member information. If member's `address` is changed, a transaction will be added to team wallet and waiting for enough approvals to execute.
+      security:
+        - JWT: []
+      requestBody:
+        $ref: '#/components/requestBodies/AddTeamMember'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TeamMember'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
+      parameters:
+        - $ref: '#/components/parameters/teamId'
+        - $ref: '#/components/parameters/roleId'
+        - $ref: '#/components/parameters/memberId'
+    delete:
+      tags:
+        - TeamWallet
+      summary: Remove member
+      description: |
+        Remove a member from team wallet. A transaction will be added to team wallet and waiting for enough approvals to execute.
+      security:
+        - JWT: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TeamMember'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
+      parameters:
+        - $ref: '#/components/parameters/teamId'
+        - $ref: '#/components/parameters/roleId'
+        - $ref: '#/components/parameters/memberId'
+  '/teams/{teamId}/transactions':
+    get:
+      tags:
+        - TeamWallet
+      summary: List transactions
+      description: |
+        List all transactions of team wallet.
+      security:
+        - JWT: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    items:
+                      $ref: '#/components/schemas/TeamTransaction'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
+      parameters:
+        - $ref: '#/components/parameters/teamId'
+    post:
+      tags:
+        - TeamWallet
+        - TeamTransaction
+      summary: Add transaction
+      description: |
+        Add a transaction to team wallet. It must have enough approvals to be executed.
+      security:
+        - JWT: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TeamTransaction'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
+      requestBody:
+        $ref: '#/components/requestBodies/AddTeamTransaction'
+      parameters:
+        - $ref: '#/components/parameters/teamId'
+  '/teams/{teamId}/transactions/{transactionId}':
+    get:
+      tags:
+        - TeamWallet
+      summary: Get transaction detail
+      description: |
+        Get detail of team transaction.
+      security:
+        - JWT: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TeamTransaction'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
+      parameters:
+        - $ref: '#/components/parameters/teamId'
+        - $ref: '#/components/parameters/transactionId'
+    post:
+      tags:
+        - TeamWallet
+        - TeamTransaction
+      summary: Response to transaction
+      description: |
+        Approve or reject a team transaction.
+      security:
+        - JWT: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                properties:
+                  data:
+                    $ref: '#/components/schemas/TeamTransaction'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/PermissionDenied'
+      requestBody:
+        $ref: '#/components/requestBodies/ResponseTeamTransaction'
+      parameters:
+        - $ref: '#/components/parameters/teamId'
+        - $ref: '#/components/parameters/transactionId'
 components:
   schemas:
     Error:
@@ -1211,10 +1480,16 @@ components:
       properties:
         id:
           type: integer
+          example: 101
         name:
           type: string
+          example: John
         address:
           type: string
+          example: 0x12345...54321
+        roleId:
+          type: integer
+          example: 200
     TeamRole:
       description: Team Role
       properties:
@@ -1245,6 +1520,36 @@ components:
         - name
         - required
         - members
+    TeamTransaction:
+      description: Team transaction
+      properties:
+        id:
+          type: integer
+          example: 123
+        creator:
+          $ref: '#/components/schemas/TeamMember'
+        reason:
+          type: string
+          example: Payment
+        approvals:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamMember'
+        rejections:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamMember'
+        pendings:
+          type: array
+          items:
+            $ref: '#/components/schemas/TeamMember'
+        coinId:
+          type: string
+          example: '`eth`'
+        destination:
+          type: string
+        value:
+          type: string
     Transaction:
       properties:
         id:
@@ -1261,15 +1566,21 @@ components:
           example: '2019-01-12T12:02:15Z'
         type:
           type: string
-          example: send
-          description: 'Enum: ```send``` ```receive```'
+          default: SEND
+          enum:
+            - SEND
+            - RECEIVE
         valueString:
           type: string
           example: '30000000'
         state:
           type: string
-          example: signed
-          description: 'Enum: ```signed``` ```unconfirmed``` ```confirmed``` ```failed```'
+          default: SIGNED
+          enum:
+            - SIGNED
+            - UNCONFIRMED
+            - CONFIRMED
+            - FAILED
         comment:
           type: string
         tx:
@@ -1329,7 +1640,7 @@ components:
       '401':
         $ref: '#/components/responses/Unauthorized'
     BadRequest:
-      description: Bad request
+      description: Bad Request
       content:
         application/json:
           schema:
@@ -1339,6 +1650,17 @@ components:
               code: 400
               status: BAD_REQUEST
               message: Invalid request
+    PermissionDenied:
+      description: Permission Denied
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error:
+              code: 403
+              status: PERMISSION_DENIED
+              message: Permission denied
     Unauthorized:
       description: Unauthorized
       content:
@@ -1387,6 +1709,12 @@ components:
       required: true
       schema:
         type: integer
+    memberId:
+      name: memberId
+      in: path
+      required: true
+      schema:
+        type: integer
     roleId:
       name: roleId
       in: path
@@ -1395,6 +1723,12 @@ components:
         type: integer
     teamId:
       name: teamId
+      in: path
+      required: true
+      schema:
+        type: integer
+    transactionId:
+      name: transactionId
       in: path
       required: true
       schema:
@@ -1523,6 +1857,28 @@ components:
               address:
                 type: string
       required: true
+    AddTeamTransaction:
+      content:
+        application/json:
+          schema:
+            description: Add team transaction
+            required:
+              - reason
+              - coinId
+              - destination
+              - value
+            properties:
+              reason:
+                type: string
+                example: Payment
+              coinId:
+                type: string
+                example: '`eth`'
+              destination:
+                type: string
+              value:
+                type: string
+      required: true
     ChangeRequired:
       content:
         application/json:
@@ -1550,6 +1906,36 @@ components:
               roles:
                 items:
                   $ref: '#/components/schemas/TeamRole'
+      required: true
+    ResponseTeamTransaction:
+      content:
+        application/json:
+          schema:
+            description: Response to a team transaction
+            required:
+              - action
+            properties:
+              action:
+                type: string
+                default: APPROVE
+                enum:
+                  - APPROVE
+                  - REJECT
+      required: true
+    UpdateTeamMember:
+      content:
+        application/json:
+          schema:
+            description: Update member
+            required:
+              - name
+              - address
+            properties:
+              name:
+                type: string
+                example: David
+              address:
+                type: string
       required: true
   securitySchemes:
     JWT:

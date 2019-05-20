@@ -123,6 +123,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         }
       }
@@ -160,6 +163,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         },
         "parameters": [
@@ -247,6 +253,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         }
       }
@@ -289,6 +298,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         }
       }
@@ -333,6 +345,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         }
       }
@@ -399,6 +414,9 @@
                 }
               }
             }
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         },
         "requestBody": {
@@ -455,6 +473,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           },
           "409": {
             "description": "Conflict",
@@ -514,6 +535,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         }
       },
@@ -549,6 +573,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         },
         "requestBody": {
@@ -589,6 +616,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         },
         "parameters": [
@@ -629,6 +659,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         },
         "parameters": [
@@ -786,6 +819,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         }
       },
@@ -821,6 +857,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         }
       }
@@ -857,6 +896,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         },
         "parameters": [
@@ -896,6 +938,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         },
         "parameters": [
@@ -1121,6 +1166,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         }
       }
@@ -1282,6 +1330,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         }
       },
@@ -1319,6 +1370,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         }
       }
@@ -1355,6 +1409,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         },
         "parameters": [
@@ -1394,6 +1451,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         },
         "parameters": [
@@ -1435,53 +1495,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
-          }
-        },
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/teamId"
           },
-          {
-            "$ref": "#/components/parameters/roleId"
-          }
-        ]
-      }
-    },
-    "/teams/{teamId}/roles/{roleId}/addMember": {
-      "post": {
-        "tags": [
-          "TeamWallet"
-        ],
-        "summary": "Add member to team",
-        "description": "Add new member to team wallet. It will add a transaction to team wallet and waiting for enough approvals to execute.\n",
-        "security": [
-          {
-            "JWT": []
-          }
-        ],
-        "requestBody": {
-          "$ref": "#/components/requestBodies/AddTeamMember"
-        },
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "data": {
-                      "$ref": "#/components/schemas/TeamRole"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         },
         "parameters": [
@@ -1529,6 +1545,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
           }
         },
         "parameters": [
@@ -1537,6 +1556,442 @@
           },
           {
             "$ref": "#/components/parameters/roleId"
+          }
+        ]
+      }
+    },
+    "/teams/{teamId}/roles/{roleId}/members": {
+      "get": {
+        "tags": [
+          "TeamWallet"
+        ],
+        "summary": "List member",
+        "description": "List all members of a role of team.\n",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/TeamMember"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/teamId"
+          },
+          {
+            "$ref": "#/components/parameters/roleId"
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "TeamWallet"
+        ],
+        "summary": "Add member",
+        "description": "Add new member to team wallet. It will add a transaction to team wallet and waiting for enough approvals to execute.\n",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/AddTeamMember"
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TeamRole"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/teamId"
+          },
+          {
+            "$ref": "#/components/parameters/roleId"
+          }
+        ]
+      }
+    },
+    "/teams/{teamId}/roles/{roleId}/members/{memberId}": {
+      "get": {
+        "tags": [
+          "TeamWallet"
+        ],
+        "summary": "Get member detail",
+        "description": "Get detail of member.\n",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/TeamMember"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/teamId"
+          },
+          {
+            "$ref": "#/components/parameters/roleId"
+          },
+          {
+            "$ref": "#/components/parameters/memberId"
+          }
+        ]
+      },
+      "put": {
+        "tags": [
+          "TeamWallet"
+        ],
+        "summary": "Update member",
+        "description": "Update member information. If member's `address` is changed, a transaction will be added to team wallet and waiting for enough approvals to execute.\n",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/AddTeamMember"
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TeamMember"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/teamId"
+          },
+          {
+            "$ref": "#/components/parameters/roleId"
+          },
+          {
+            "$ref": "#/components/parameters/memberId"
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "TeamWallet"
+        ],
+        "summary": "Remove member",
+        "description": "Remove a member from team wallet. A transaction will be added to team wallet and waiting for enough approvals to execute.\n",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TeamMember"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/teamId"
+          },
+          {
+            "$ref": "#/components/parameters/roleId"
+          },
+          {
+            "$ref": "#/components/parameters/memberId"
+          }
+        ]
+      }
+    },
+    "/teams/{teamId}/transactions": {
+      "get": {
+        "tags": [
+          "TeamWallet"
+        ],
+        "summary": "List transactions",
+        "description": "List all transactions of team wallet.\n",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "items": {
+                        "$ref": "#/components/schemas/TeamTransaction"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/teamId"
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "TeamWallet",
+          "TeamTransaction"
+        ],
+        "summary": "Add transaction",
+        "description": "Add a transaction to team wallet. It must have enough approvals to be executed.\n",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TeamTransaction"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/AddTeamTransaction"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/teamId"
+          }
+        ]
+      }
+    },
+    "/teams/{teamId}/transactions/{transactionId}": {
+      "get": {
+        "tags": [
+          "TeamWallet"
+        ],
+        "summary": "Get transaction detail",
+        "description": "Get detail of team transaction.\n",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TeamTransaction"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
+          }
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/teamId"
+          },
+          {
+            "$ref": "#/components/parameters/transactionId"
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "TeamWallet",
+          "TeamTransaction"
+        ],
+        "summary": "Response to transaction",
+        "description": "Approve or reject a team transaction.\n",
+        "security": [
+          {
+            "JWT": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "$ref": "#/components/schemas/TeamTransaction"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/PermissionDenied"
+          }
+        },
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ResponseTeamTransaction"
+        },
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/teamId"
+          },
+          {
+            "$ref": "#/components/parameters/transactionId"
           }
         ]
       }
@@ -1935,13 +2390,20 @@
         "description": "Team Wallet member",
         "properties": {
           "id": {
-            "type": "integer"
+            "type": "integer",
+            "example": 101
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "example": "John"
           },
           "address": {
-            "type": "string"
+            "type": "string",
+            "example": "0x12345...54321"
+          },
+          "roleId": {
+            "type": "integer",
+            "example": 200
           }
         }
       },
@@ -1988,6 +2450,50 @@
           "members"
         ]
       },
+      "TeamTransaction": {
+        "description": "Team transaction",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 123
+          },
+          "creator": {
+            "$ref": "#/components/schemas/TeamMember"
+          },
+          "reason": {
+            "type": "string",
+            "example": "Payment"
+          },
+          "approvals": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TeamMember"
+            }
+          },
+          "rejections": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TeamMember"
+            }
+          },
+          "pendings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TeamMember"
+            }
+          },
+          "coinId": {
+            "type": "string",
+            "example": "`eth`"
+          },
+          "destination": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "Transaction": {
         "properties": {
           "id": {
@@ -2008,8 +2514,11 @@
           },
           "type": {
             "type": "string",
-            "example": "send",
-            "description": "Enum: ```send``` ```receive```"
+            "default": "SEND",
+            "enum": [
+              "SEND",
+              "RECEIVE"
+            ]
           },
           "valueString": {
             "type": "string",
@@ -2017,8 +2526,13 @@
           },
           "state": {
             "type": "string",
-            "example": "signed",
-            "description": "Enum: ```signed``` ```unconfirmed``` ```confirmed``` ```failed```"
+            "default": "SIGNED",
+            "enum": [
+              "SIGNED",
+              "UNCONFIRMED",
+              "CONFIRMED",
+              "FAILED"
+            ]
           },
           "comment": {
             "type": "string"
@@ -2109,7 +2623,7 @@
         }
       },
       "BadRequest": {
-        "description": "Bad request",
+        "description": "Bad Request",
         "content": {
           "application/json": {
             "schema": {
@@ -2120,6 +2634,23 @@
                 "code": 400,
                 "status": "BAD_REQUEST",
                 "message": "Invalid request"
+              }
+            }
+          }
+        }
+      },
+      "PermissionDenied": {
+        "description": "Permission Denied",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/Error"
+            },
+            "example": {
+              "error": {
+                "code": 403,
+                "status": "PERMISSION_DENIED",
+                "message": "Permission denied"
               }
             }
           }
@@ -2192,6 +2723,14 @@
           "type": "integer"
         }
       },
+      "memberId": {
+        "name": "memberId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
       "roleId": {
         "name": "roleId",
         "in": "path",
@@ -2202,6 +2741,14 @@
       },
       "teamId": {
         "name": "teamId",
+        "in": "path",
+        "required": true,
+        "schema": {
+          "type": "integer"
+        }
+      },
+      "transactionId": {
+        "name": "transactionId",
         "in": "path",
         "required": true,
         "schema": {
@@ -2389,6 +2936,38 @@
         },
         "required": true
       },
+      "AddTeamTransaction": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "Add team transaction",
+              "required": [
+                "reason",
+                "coinId",
+                "destination",
+                "value"
+              ],
+              "properties": {
+                "reason": {
+                  "type": "string",
+                  "example": "Payment"
+                },
+                "coinId": {
+                  "type": "string",
+                  "example": "`eth`"
+                },
+                "destination": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "required": true
+      },
       "ChangeRequired": {
         "content": {
           "application/json": {
@@ -2426,6 +3005,52 @@
                   "items": {
                     "$ref": "#/components/schemas/TeamRole"
                   }
+                }
+              }
+            }
+          }
+        },
+        "required": true
+      },
+      "ResponseTeamTransaction": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "Response to a team transaction",
+              "required": [
+                "action"
+              ],
+              "properties": {
+                "action": {
+                  "type": "string",
+                  "default": "APPROVE",
+                  "enum": [
+                    "APPROVE",
+                    "REJECT"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "required": true
+      },
+      "UpdateTeamMember": {
+        "content": {
+          "application/json": {
+            "schema": {
+              "description": "Update member",
+              "required": [
+                "name",
+                "address"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "example": "David"
+                },
+                "address": {
+                  "type": "string"
                 }
               }
             }
