@@ -40,6 +40,8 @@
 
   .image {
     margin-bottom: 40px;
+    width: 470px;
+    height: 381px;
   }
 
   .error {
@@ -48,5 +50,9 @@
 
   .success {
     color: green;
+  }
+
+  .container {
+    text-align: center;
   }
 }

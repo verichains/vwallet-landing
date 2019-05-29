@@ -8,12 +8,12 @@ $(document).ready(function () {
       message: 'Having a home based business is a wonderful asset to your life. The problem still stands, when it comes timeadvertise your business for a cheap cost. I know you have looked for to answer everywhere; I am here to share a few simple creative ways'
     },
     {
-      name: 'Cuong 88',
-      work: 'Better',
+      name: 'Jeffrey Davenport',
+      work: 'Finance Adviser',
       message: 'This is awesome! I love it! Best wallet app for crypto currency.'
     },
     {
-      name: 'Phuoc Le',
+      name: 'Donald Coleman',
       work: 'CEO',
       message: 'I am rich and this app help me control and use all my money.'
     },
