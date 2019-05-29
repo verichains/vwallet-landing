@@ -1,24 +1,18 @@
-# generators-web-project
-An skeleton web project for frontend developer. It uses SASS, Gulp, and Browserify and utilizes best Frontend practices and Gulp best practices from [this resource](https://github.com/greypants/gulp-starter).
 
-##Getting Started
-1. Clone this repo from `https://github.com/tanUIT/generators-web-project.git`.
-2. Run `npm install` from the root directory.
-3. Finally run `bower install`.
-```
-$ git clone https://github.com/tanUIT/generators-web-project.git
-
-$ npm install
-
-$ bower install
-```
-
-##Usage
-- To run project with browser-sync use `gulp serve` command (may require installing Gulp globally `npm install gulp -g`). Your browser will automatically be opened and directed to the browser-sync proxy address. Now that gulp serve is running, any changes in the /app directory will be automatically processed by Gulp and the changes will be injected to any open browsers pointed at the proxy address.
-```
-$ gulp serve
-```
-- To build project as production use `gulp` command. An dist directory will be created, it contain all js, css, html and images file optimized.
-```
-$ gulp
-```
+## Setup 
+If gulp is not installed, run the following command    
+``npm install --global gulp-cli`` Then run yarn or npm to install dependencies  
+``yarn install`` or ``npm install``  
+  ## Usage - Your browser will automatically be opened and directed to the browser-sync proxy address. Now that gulp serve is running, any changes in the /app directory will be automatically processed by Gulp and the changes will be injected to any open browsers pointed at the proxy address.    
+```    
+$ gulp serve    
+```    
+- To build project as production use `gulp` command. An dist directory will be created, it contain all js, css, html and images file optimized.    
+```    
+$ gulp    
+```  
+  
+## Deploy  
+To deploy to github page, add  
+``<base href="dist/"/>``  
+into `index.html` after `<head>` then push `index.html` and `dist` folder to github
