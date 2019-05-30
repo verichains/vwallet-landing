@@ -12,6 +12,7 @@ const babel = require('gulp-babel');
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
 const revts = require('gulp-rev-timestamp');
+const runSequence = require('run-sequence');
 
 gulp.task('minify-css', () => {
   return gulp.src('.tmp/styles/*.css')
@@ -19,12 +20,20 @@ gulp.task('minify-css', () => {
     .pipe(gulp.dest('dist/styles'));
 });
 
+function toPromise(x) {
+  return new Promise((resolve, reject) => x.on('error', reject).on('end', resolve));
+}
+
 gulp.task('style', function () {
-  gulp.src('app/styles/**/*.scss')
-    .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('.tmp/styles'));
-  gulp.src('app/styles/**/*.css')
-    .pipe(gulp.dest('.tmp/styles'));
+  return Promise.all(
+    [
+      toPromise(gulp.src('app/styles/**/*.css')
+        .pipe(gulp.dest('.tmp/styles'))),
+      toPromise(gulp.src('app/styles/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('.tmp/styles')))
+    ]
+  )
 });
 
 gulp.task('styles-dist', function () {
