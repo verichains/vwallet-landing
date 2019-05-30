@@ -11,6 +11,7 @@ const babel = require('gulp-babel');
 
 const $ = gulpLoadPlugins();
 const reload = browserSync.reload;
+const revts = require('gulp-rev-timestamp');
 
 gulp.task('minify-css', () => {
   return gulp.src('.tmp/styles/*.css')
@@ -45,6 +46,7 @@ gulp.task('scripts', () => {
   return gulp.src('app/scripts/*.js')
     .pipe(gulp.dest('dist/scripts'))
 });
+
 
 gulp.task('html', ['styles-dist'], () => {
   const assets = $.useref.assets({searchPath: ['app', '.']});
@@ -115,12 +117,32 @@ gulp.task('serve:dist', () => {
   });
 });
 
-gulp.task('copy-index', function () {
-  gulp.src('app/index.html')
-    .pipe(gulp.dest('./'));
+const replace = require('gulp-string-replace');
+const runSequence = require('run-sequence');
+
+gulp.task('build-index', function () {
+  runSequence('copy-index', 'add-rev-timestamp');
 });
 
-gulp.task('build', ['html', 'images', 'fonts', 'minify-css', 'minify-js', 'extras'], () => {
+gulp.task('copy-index', function () {
+  gulp.src(['app/index.html'])
+    .pipe(replace(/<head>/g, function () {
+      return '<head>\n<base href="dist/"/>';
+    }))
+    .pipe(gulp.dest('./'))
+});
+
+gulp.task('add-rev-timestamp', function () {
+  const time = new Date().getTime();
+  gulp.src(['app/index.html'])
+    .pipe(replace(/@@hash/g, function () {
+      return time;
+    }))
+    .pipe(gulp.dest('./'))
+
+});
+
+gulp.task('build', ['html', 'images', 'fonts', 'minify-css', 'minify-js', 'extras', 'build-index'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
 });
 

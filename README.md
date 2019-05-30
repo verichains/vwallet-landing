@@ -15,8 +15,4 @@ $ gulp
   
 ## Deploy
 To deploy to github page:
-- copy `app/index.html` to `index.html`
-- add  
-``<base href="dist/"/>``
-
-into `index.html` after `<head>` then push `index.html` and `dist` folder to github
+Push `index.html` and `dist` folder to github
