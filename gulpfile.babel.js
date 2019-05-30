@@ -118,25 +118,15 @@ gulp.task('serve:dist', () => {
 });
 
 const replace = require('gulp-string-replace');
-const runSequence = require('run-sequence');
 
 gulp.task('build-index', function () {
-  runSequence('copy-index', 'add-rev-timestamp');
-});
-
-gulp.task('copy-index', function () {
-  gulp.src(['app/index.html'])
-    .pipe(replace(/<head>/g, function () {
-      return '<head>\n<base href="dist/"/>';
-    }))
-    .pipe(gulp.dest('./'))
-});
-
-gulp.task('add-rev-timestamp', function () {
   const time = new Date().getTime();
-  gulp.src(['app/index.html'])
+  gulp.src('./app/index.html')
     .pipe(replace(/@@hash/g, function () {
       return time;
+    }))
+    .pipe(replace(/<head>/g, function () {
+      return '<head>\n<base href="dist/"/>';
     }))
     .pipe(gulp.dest('./'))
 
