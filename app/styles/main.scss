@@ -78,6 +78,13 @@ body {
     border-color: rgba(0, 0, 0, 0.6) !important;
   }
 
+  .download.row {
+    @include media-breakpoint-down(md) {
+      justify-content: center;
+      margin-bottom: 32px;
+    }
+  }
+
   #home {
     background-image: url("../images/bg-banner.png");
     background-repeat: no-repeat;
